@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 import Post from '../components/post'
 
@@ -15,7 +16,11 @@ export async function getStaticProps() {
   }
 }
 
+
+
 export default function IndexPage({ postList }) {
+  const [txt,setTxt] = useState("")
+  const handleChange = e => {setTxt(e.target.value)}
   return (
     <main>
       <Head>
@@ -23,7 +28,7 @@ export default function IndexPage({ postList }) {
       </Head>
 
       <h1>On9999</h1>
-
+        <input type='text' onChange={(e) => handleChange(e)} value={txt} ></input>
       <section>
         {postList.map((post) => (
           <Post {...post} key={post.id} />
